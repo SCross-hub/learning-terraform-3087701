@@ -63,7 +63,7 @@ module "blog_alb" {
   security_groups = [module.blog_sg.security_group_id]
 
   access_logs = {
-    bucket = "my-alb-logs"
+    bucket = "my-alb-logs-us-west-2"  # Updated bucket name
   }
 
   target_groups = [

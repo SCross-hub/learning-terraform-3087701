@@ -126,15 +126,15 @@ resource "aws_autoscaling_policy" "scale_down" {
 }
 
 # CloudWatch Alarms
-resource "aws_cloudwatch_alarm" "cpu_high" {
+resource "aws_cloudwatch_metric_alarm" "cpu_high" {
   alarm_name                = "cpu_high"
   comparison_operator       = "GreaterThanThreshold"
-  evaluation_periods        = "2"
+  evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = "300"
+  period                    = 300
   statistic                 = "Average"
-  threshold                 = "70"
+  threshold                 = 70
   alarm_description         = "Triggers if CPU utilization exceeds 70%."
   alarm_actions             = [aws_autoscaling_policy.scale_up.arn]
   dimensions = {
@@ -142,15 +142,15 @@ resource "aws_cloudwatch_alarm" "cpu_high" {
   }
 }
 
-resource "aws_cloudwatch_alarm" "cpu_low" {
+resource "aws_cloudwatch_metric_alarm" "cpu_low" {
   alarm_name                = "cpu_low"
   comparison_operator       = "LessThanThreshold"
-  evaluation_periods        = "2"
+  evaluation_periods        = 2
   metric_name               = "CPUUtilization"
   namespace                 = "AWS/EC2"
-  period                    = "300"
+  period                    = 300
   statistic                 = "Average"
-  threshold                 = "30"
+  threshold                 = 30
   alarm_description         = "Triggers if CPU utilization drops below 30%."
   alarm_actions             = [aws_autoscaling_policy.scale_down.arn]
   dimensions = {

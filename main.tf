@@ -15,7 +15,7 @@ data "aws_ami" "app_ami" {
 }
 
 data "aws_vpc" "default" {
-  delfault = true
+  default = true
 }
 
 resource "aws_instance" "blog" {
